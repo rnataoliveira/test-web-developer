@@ -18,6 +18,8 @@ namespace Trading.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Trade>().ToTable("Trades");
+
+            modelBuilder.Entity<Trade>().HasIndex(collumn => collumn.Code).IsUnique();
         }
     }
 }

@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{7B16A00B-DB75-400B-8718-6AD0177B5850}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trading", "src\Trading.csproj", "{83D87CB8-A254-4851-80BB-5DFB630E84EC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{83D87CB8-A254-4851-80BB-5DFB630E84EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83D87CB8-A254-4851-80BB-5DFB630E84EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83D87CB8-A254-4851-80BB-5DFB630E84EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83D87CB8-A254-4851-80BB-5DFB630E84EC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{83D87CB8-A254-4851-80BB-5DFB630E84EC} = {7B16A00B-DB75-400B-8718-6AD0177B5850}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EAEA3DA1-1426-4F13-8CA0-D0B19F892E5C}
+	EndGlobalSection
+EndGlobal

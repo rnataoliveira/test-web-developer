@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Trading.Models.Trade>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Código</th>
+            <th>Nome da Mercadoria</th>
+            <th>Tipo</th>
+            <th>Quantidade</th>
+            <th>Preço</th>
+            <th>Tipo do Negócio</th>
+            <th>Detalhes</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td scope="row">@Html.DisplayFor(modelItem => item.Code)</td>
+                <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                <td>@Html.DisplayFor(modelItem => item.Type)</td>
+                <td>@Html.DisplayFor(modelItem => item.Quantity)</td>
+                <td>@Html.DisplayFor(modelItem => item.Price)</td>
+                <td>@Html.DisplayFor(modelItem => item.BusinessType)</td>
+            </tr>
+        }
+    </tbody>
+</table>

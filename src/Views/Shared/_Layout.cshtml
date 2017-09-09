@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <title>Valemobi</title>
+    <title>@ViewData["Title"] - Valemobi</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="~/css/site.css">
     <link href="https://fonts.googleapis.com/css?family=Encode+Sans+Semi+Condensed" rel="stylesheet">
@@ -20,21 +20,21 @@
         </div>
     </nav>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div id="content-top">
-                    <div class="jumbotron jumbotron-fluid">
-                        <div class="container">
-                            <h1 class="display-3">Negociação de mercadoria</h1>
-                            <hr>
+    <main class="container">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div id="content-top">
+                        <div class="jumbotron jumbotron-fluid">
+                            <div class="container">
+                                <h1 class="display-3">@ViewData["Title"]</h1>
+                                <hr>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <main class="container">
         @RenderBody()
     </main>
     <environment names="Development">

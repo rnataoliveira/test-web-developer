@@ -36,10 +36,16 @@ namespace Trading.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Route("trades/create",Name = "CreateTrade")]
-        public async Task<IActionResult> Create([Bind("Code, Type, Name, Quantity, Price, BusinessType")] Trade trade)
+        public async Task<IActionResult> Create(Trade trade)
         {
             try
             {
+                if (_context.Trades.Any(t => t.Code == trade.Code))
+                {
+                    ModelState.AddModelError("Code", "Já existe uma negociação cadastrada com este código.");
+                }
+
+
                 if (ModelState.IsValid)
                 {
                     _context.Add(trade);
@@ -47,7 +53,7 @@ namespace Trading.Controllers
                     return RedirectToAction(nameof(Index));
                 }
             }
-            catch (DbUpdateException /* ex */)
+            catch (DbUpdateException)
             {
                 //Log the error (uncomment ex variable name and write a log.
                 ModelState.AddModelError("", "Unable to save changes. " +
@@ -56,10 +62,16 @@ namespace Trading.Controllers
             }
             return View(trade);
         }
-
-        public IActionResult Error()
+        
+        [Route("trades/verify-code")]
+        [AcceptVerbs("Get", "Post")]
+        public IActionResult VerifyCode(string code)
         {
-            return View();
+            if (_context.Trades.Any(t => t.Code == code))
+            {
+                return Json(data: $"Já existe uma negociação cadastrada com este código: {code}");
+            }
+            return Json(data: true);
         }
     }
 }

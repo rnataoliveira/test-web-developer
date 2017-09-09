@@ -26,16 +26,23 @@ namespace Trading.Controllers
             return View(await _context.Trades.ToListAsync());
         }
 
+        [HttpGet]
+        [Route("trades/create")]
+        public async Task<IActionResult> Create()
+        {
+            return View();
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Route("trades/create")]
-        public async Task<IActionResult> Create([Bind("Code, Type, Name, Quantity, Price, BusinessType")] Trade negotiation)
+        [Route("trades/create",Name = "CreateTrade")]
+        public async Task<IActionResult> Create([Bind("Code, Type, Name, Quantity, Price, BusinessType")] Trade trade)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    _context.Add(negotiation);
+                    _context.Add(trade);
                     await _context.SaveChangesAsync();
                     return RedirectToAction(nameof(Index));
                 }
@@ -47,7 +54,7 @@ namespace Trading.Controllers
                     "Try again, and if the problem persists " +
                     "see your system administrator.");
             }
-            return View(negotiation);
+            return View(trade);
         }
 
         public IActionResult Error()

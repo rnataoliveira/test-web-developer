@@ -20,6 +20,14 @@ namespace Trading.Models
 
         public decimal Price { get; set; }
 
-        public string BusinessType { get; set; }
+        public BusinessType BusinessType { get; set; }
+    }
+
+    public enum BusinessType
+    {
+        [Display(Name = "Venda")]
+        Sell = 0,
+        [Display(Name = "Compra")]
+        Buy = 1
     }
 }

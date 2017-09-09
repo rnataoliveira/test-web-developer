@@ -12,9 +12,10 @@ using Trading.Models;
 namespace Trading.Data.Migrations
 {
     [DbContext(typeof(TradingContext))]
-    partial class TradingContextModelSnapshot : ModelSnapshot
+    [Migration("20170909200059_ChangingBusinessTypeToEnum")]
+    partial class ChangingBusinessTypeToEnum
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

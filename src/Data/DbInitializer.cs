@@ -28,7 +28,7 @@ namespace Trading.Data
                     Name = "Banana",
                     Quantity = 1000,
                     Price = 2000,
-                    BusinessType = "Compra"
+                    BusinessType = BusinessType.Buy
                 },
                 new Trade {
                     Code = "0001",
@@ -36,7 +36,7 @@ namespace Trading.Data
                     Name = "Milho",
                     Quantity = 500,
                     Price = 1500,
-                    BusinessType = "Venda"
+                    BusinessType = BusinessType.Sell
                 }
             };
 

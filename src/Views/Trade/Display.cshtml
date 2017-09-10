@@ -46,8 +46,24 @@
 </div>
 <div class="row">
     <div class="btn-group col-lg-12" role="group" aria-label="Basic example">
-        <a asp-route="UpdateForm" asp-route-id="@Model.Id" class="col-lg-4 btn btn-secondary confirmation-btn">Alterar</a>
-        <a asp-route="RemoveForm" asp-route-id="@Model.Id" class="col-lg-4 btn btn-secondary confirmation-btn">Excluir</a>
-        <a asp-route="TradeList" class="col-lg-4 btn btn-secondary confirmation-btn">Lista de Negociações</a>
+        <a asp-route="UpdateForm" asp-route-id="@Model.Id" class="col-lg-4 btn btn-secondary">Alterar</a>
+        <button id="remove" class="col-lg-4 btn btn-secondary" type="button">Excluir</button>
+        <a asp-route="TradeList" class="col-lg-4 btn btn-secondary">Lista de Negociações</a>
     </div>
 </div>
+<form asp-route="RemoveForm" method="post" id="remove-form">
+    <input type="hidden" asp-for="Id"/>
+</form>
+@section Scripts {
+    <script type="text/javascript">
+        function submitFormToServer() {
+            $('#remove-form').submit()
+        }
+
+        function registerFunctionForClickEventOnRemove() {
+            $('#remove').on('click', submitFormToServer)
+        }
+
+        $(document).ready(registerFunctionForClickEventOnRemove)
+    </script>
+}

@@ -11,22 +11,19 @@ using Microsoft.AspNetCore.Html;
 
 namespace Trading.Controllers
 {
-    [Route("")]
+    [Route("",Name = "Home")]
     public class HomeController : Controller
     {
         public async Task<IActionResult> Index()
         {
             var readmeUri = "https://raw.githubusercontent.com/rnataoliveira/test-web-developer/master/README.md";
 
-            //fazer uma request
+            //make a request using Httpcliente, convert a markdown into a html
             var client = new HttpClient();
             var content = await client.GetStringAsync(new Uri(readmeUri));
             var result = CommonMark.CommonMarkConverter.Convert(content);
-            
-            //utlizando um http client
-
-            //retrnaro conteudo da request para a view
-
+           
+            //return the request conten for the view
             return View(new HtmlString(result));
         }
     }

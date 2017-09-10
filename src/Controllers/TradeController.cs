@@ -131,7 +131,7 @@ namespace Trading.Controllers
             _context.Trades.Any(t => t.Code == code && t.Id != id);
 
 
-        [HttpGet]
+        [HttpPost]
         [Route("trades/remove", Name = "RemoveForm")]
         public async Task<IActionResult> Remove(int id)
         {
@@ -145,7 +145,6 @@ namespace Trading.Controllers
 
                 await _context.SaveChangesAsync();
 
-                return RedirectToAction(nameof(Index));
             }
             catch (DbUpdateException)
             {
@@ -154,7 +153,7 @@ namespace Trading.Controllers
                     "Try again, and if the problem persists " +
                     "see your system administrator.");
             }
-            return View(trade);
+            return RedirectToAction(nameof(Index));
         }
 
         

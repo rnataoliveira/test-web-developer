@@ -18,4 +18,4 @@ Quem sabe não enxergamos uma oportunidade
 em meio ao seu código.
 
 Obs.: Utilizei bootstrap, javascript para validações no cliente, c#, asp net core por estar mais familiarizada e estar vendo isso na faculdade. Adicionei as funcionalidades de criar e listar a negociação e também adicionei as funcionalidade de excluir e alterar uma negociação.  
-Além disso, realizei uma request do tipo get usando HttpClient para pegar o conteúdoREADME.md e utilizei a lib CommonMark para converter markdown em html e HtmlString para retornar uma string com o conteúdo.
+Além disso, realizei uma request do tipo get usando HttpClient para pegar o conteúdo do README.md e utilizei a lib CommonMark para converter markdown em html e HtmlString para retornar uma string com o conteúdo.

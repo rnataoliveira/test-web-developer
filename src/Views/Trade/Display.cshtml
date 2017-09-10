@@ -44,10 +44,17 @@
         </div>
     </div>
 </div>
-<div class="col-lg-12" role="group" aria-label="Basic example">
+<!---<div class="col-lg-12" role="group" aria-label="Basic example">
     <div class="row">
         <a asp-route="UpdateForm" asp-route-id="@Model.Id" class="btn btn-secondary confirmation-btn col-lg-4">Alterar</a>
         <a asp-route="RemoveForm" asp-route-id="@Model.Id" class="btn btn-secondary confirmation-btn col-lg-4">Excluir</a>
         <a asp-route="TradeList" class="btn btn-secondary confirmation-btn col-lg-4">Lista de Negociações</a>
+    </div>
+</div>-->
+<div class="row">
+    <div class="btn-group col-lg-12" role="group" aria-label="Basic example">
+        <button asp-route="UpdateForm" asp-route-id="@Model.Id" type="button" class="col-lg-4 btn btn-secondary confirmation-btn">Alterar</button>
+        <button asp-route="RemoveForm" asp-route-id="@Model.Id" type="button" class="col-lg-4 btn btn-secondary confirmation-btn">Excluir</button>
+        <button asp-route="TradeList" type="button" class="col-lg-4 btn btn-secondary confirmation-btn">Lista de Negociações</button>
     </div>
 </div>

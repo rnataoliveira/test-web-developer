@@ -12,7 +12,7 @@ namespace Trading.Models
         public int Id { get; set; }
 
         [Required(ErrorMessage = "O Código é obrigatório.")]
-        [Remote(action: "VerifyCode", controller: "Trade")]
+        [Remote(action: "VerifyCode", controller: "Trade", AdditionalFields = "Id")]
         public string Code { get; set; }
 
         [Required(ErrorMessage = "O Tipo de Mercadoria é obrigatório.")]

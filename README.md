@@ -16,3 +16,6 @@ Ao confirmar, essa operação irá para uma lista de operações, que poderão s
 Se você não conseguir realizar 100%, nos envie mesmo assim.  
 Quem sabe não enxergamos uma oportunidade
 em meio ao seu código.
+
+Obs.: Utilizei bootstrap, javascript para validações no cliente, c#, asp net core por estar mais familiarizada e estar vendo isso na faculdade. Adicionei as funcionalidades de criar e listar a negociação e também adicionei as funcionalidade de excluir e alterar uma negociação.  
+Além disso, realizei uma request usando HttpClient para converter o meu README.md(markdown) em html e HtmlString para poder renderizá-lo na view.

@@ -1,0 +1,53 @@
+﻿@model Trading.Models.Trade
+
+@{
+    ViewData["Title"] = "Visualizar Negociação";
+}
+
+<input asp-for="Id" type="hidden" />
+<div class="form-group col-lg-12">
+    <label asp-for="Code">Código </label>
+    <input asp-for="Code" type="text" class="form-control" placeholder="Código da Mercadoria" readonly>
+</div>
+<div class="form-group col-lg-12">
+    <label asp-for="Name">Nome</label>
+    <input asp-for="Name" type="text" class="form-control" placeholder="Nome da Mercadoria" readonly>
+</div>
+<div class="form-group col-lg-12">
+    <label asp-for="Type">Tipo</label>
+    <input asp-for="Type" type="text" class="form-control" placeholder="Tipo da Mercadoria" readonly>
+</div>
+<div class="form-group row col-lg-12">
+    <div class="form-group col-lg-6">
+        <label asp-for="Quantity">Quantidade</label>
+        <input asp-for="Quantity" type="text" class="form-control" placeholder="Quantidade da Mercadoria" readonly>
+    </div>
+    <div class="form-group col-lg-6">
+        <label asp-for="Price">Preço</label>
+        <input asp-for="Price" type="text" class="form-control" placeholder="Preço da Mercadoria" readonly>
+    </div>
+</div>
+<div class="form-group row col-lg-12">
+    <label class="col-form-legend col-sm-2">Tipo do Negócio</label>
+    <div class="col-lg-12">
+        <div class="form-check">
+            <label asp-for="BusinessType" class="form-check-label">
+                <input asp-for="BusinessType" class="form-check-input" type="radio" value="Buy" disabled>
+                Compra
+            </label>
+        </div>
+        <div class="form-check">
+            <label asp-for="BusinessType" class="form-check-label">
+                <input asp-for="BusinessType" class="form-check-input" type="radio" value="Sell" disabled>
+                Venda
+            </label>
+        </div>
+    </div>
+</div>
+<div class="col-lg-12" role="group" aria-label="Basic example">
+    <div class="row">
+        <a asp-route="UpdateForm" asp-route-id="@Model.Id" class="btn btn-secondary confirmation-btn col-lg-4">Alterar</a>
+        <a asp-route="RemoveForm" asp-route-id="@Model.Id" class="btn btn-secondary confirmation-btn col-lg-4">Excluir</a>
+        <a asp-route="TradeList" class="btn btn-secondary confirmation-btn col-lg-4">Lista de Negociações</a>
+    </div>
+</div>

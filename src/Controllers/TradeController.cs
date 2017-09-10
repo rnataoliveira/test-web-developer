@@ -18,7 +18,7 @@ namespace Trading.Controllers
             _context = context;
         }
 
-        [Route("trades")]
+        [Route("trades", Name = "TradeList")]
         public async Task<IActionResult> Index()
         {
             //ViewData["Message"] = "Lista de Operações";
@@ -27,29 +27,33 @@ namespace Trading.Controllers
         }
 
         [HttpGet]
-        [Route("trades/create")]
-        public async Task<IActionResult> Create()
+        [Route("trades/update", Name = "UpdateForm")]
+        public async Task<IActionResult> Update(int id)
         {
-            return View();
+            var trade = await _context.Trades.FirstOrDefaultAsync(t => t.Id == id);
+
+            if (trade == null) return NotFound();
+
+            return View(trade);
         }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Route("trades/create",Name = "CreateTrade")]
-        public async Task<IActionResult> Create(Trade trade)
+        [Route("trades/update", Name = "UpdateTrade")]
+        public async Task<IActionResult> Update(Trade trade)
         {
             try
             {
-                if (_context.Trades.Any(t => t.Code == trade.Code))
-                {
+                if (Exists(trade.Code, trade.Id))
                     ModelState.AddModelError("Code", "Já existe uma negociação cadastrada com este código.");
-                }
-
-
+                
                 if (ModelState.IsValid)
                 {
-                    _context.Add(trade);
+                    _context.Update(trade);
+
                     await _context.SaveChangesAsync();
+
                     return RedirectToAction(nameof(Index));
                 }
             }
@@ -60,18 +64,116 @@ namespace Trading.Controllers
                     "Try again, and if the problem persists " +
                     "see your system administrator.");
             }
+
+            return View(trade);
+        }
+
+        [HttpGet]
+        [Route("trades/create", Name = "CreateForm")]
+        public async Task<IActionResult> Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Route("trades/create", Name = "CreateTrade")]
+        public async Task<IActionResult> Create(Trade trade)
+        {
+            try
+            {
+                if (Exists(trade.Code, trade.Id))
+                    ModelState.AddModelError("Code", "Já existe uma negociação cadastrada com este código.");
+
+                if (ModelState.IsValid)
+                {
+                    _context.Add(trade);
+
+                    await _context.SaveChangesAsync();
+
+                    return RedirectToAction(nameof(Index));
+                }
+            }
+            catch (DbUpdateException)
+            {
+                //Log the error (uncomment ex variable name and write a log.
+                ModelState.AddModelError("", "Unable to save changes. " +
+                    "Try again, and if the problem persists " +
+                    "see your system administrator.");
+            }
+
             return View(trade);
         }
         
+
+        [HttpGet]
+        [Route("trades/{id}/display", Name = "DisplayTrade")]
+        public async Task<IActionResult> Display(int id)
+        {
+            var trade = await _context.Trades.FirstOrDefaultAsync(t => t.Id == id);
+
+            if (trade == null) return NotFound();
+
+            return View(trade);
+        }
+        
+
         [Route("trades/verify-code")]
         [AcceptVerbs("Get", "Post")]
-        public IActionResult VerifyCode(string code)
+        public IActionResult VerifyCode(string code, int id)
         {
-            if (_context.Trades.Any(t => t.Code == code))
+            var error = $"Já existe uma negociação cadastrada com este código: {code}";
+
+            return Exists(code, id) ? Json(data: error) : Json(data: true);
+        }
+
+        bool Exists(string code, int id) => 
+            _context.Trades.Any(t => t.Code == code && t.Id != id);
+
+
+
+
+
+        [HttpGet]
+        [Route("trades/remove", Name = "RemoveForm")]
+        public async Task<IActionResult> Remove(int id)
+        {
+            var trade = await _context.Trades.FirstOrDefaultAsync(t => t.Id == id);
+
+            if (trade == null) return NotFound();
+
+            return View(trade);
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Route("trades/remove", Name = "RemoveTrade")]
+        public async Task<IActionResult> Remove(Trade trade)
+        {
+            try
             {
-                return Json(data: $"Já existe uma negociação cadastrada com este código: {code}");
+                if (Exists(trade.Code, trade.Id))
+                    ModelState.AddModelError("Code", "Já existe uma negociação cadastrada com este código.");
+
+                if (ModelState.IsValid)
+                {
+                    _context.Remove(trade);
+
+                    await _context.SaveChangesAsync();
+
+                    return RedirectToAction(nameof(Index));
+                }
             }
-            return Json(data: true);
+            catch (DbUpdateException)
+            {
+                //Log the error (uncomment ex variable name and write a log.
+                ModelState.AddModelError("", "Unable to save changes. " +
+                    "Try again, and if the problem persists " +
+                    "see your system administrator.");
+            }
+
+            return View(trade);
         }
     }
 }

@@ -17,6 +17,10 @@ namespace Trading
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
+
+            if (env.IsDevelopment())
+                builder.AddUserSecrets("6f26a544-5089-4238-901d-d73a4ed1c3bf");
+
             Configuration = builder.Build();
         }
 

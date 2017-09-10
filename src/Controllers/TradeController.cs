@@ -27,7 +27,7 @@ namespace Trading.Controllers
         }
 
         [HttpGet]
-        [Route("trades/update", Name = "UpdateForm")]
+        [Route("trades/{id}/update", Name = "UpdateForm")]
         public async Task<IActionResult> Update(int id)
         {
             var trade = await _context.Trades.FirstOrDefaultAsync(t => t.Id == id);
@@ -40,7 +40,7 @@ namespace Trading.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Route("trades/update", Name = "UpdateTrade")]
+        [Route("trades/{id}/update", Name = "UpdateTrade")]
         public async Task<IActionResult> Update(Trade trade)
         {
             try
@@ -132,7 +132,7 @@ namespace Trading.Controllers
 
 
         [HttpPost]
-        [Route("trades/remove", Name = "RemoveForm")]
+        [Route("trades/{id}/remove", Name = "RemoveForm")]
         public async Task<IActionResult> Remove(int id)
         {
             var trade = await _context.Trades.FirstOrDefaultAsync(t => t.Id == id);

@@ -131,39 +131,21 @@ namespace Trading.Controllers
             _context.Trades.Any(t => t.Code == code && t.Id != id);
 
 
-
-
-
         [HttpGet]
         [Route("trades/remove", Name = "RemoveForm")]
         public async Task<IActionResult> Remove(int id)
         {
             var trade = await _context.Trades.FirstOrDefaultAsync(t => t.Id == id);
 
-            if (trade == null) return NotFound();
-
-            return View(trade);
-        }
-
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        [Route("trades/remove", Name = "RemoveTrade")]
-        public async Task<IActionResult> Remove(Trade trade)
-        {
+            if (trade == null)
+                return NotFound();
             try
             {
-                if (Exists(trade.Code, trade.Id))
-                    ModelState.AddModelError("Code", "Já existe uma negociação cadastrada com este código.");
+                _context.Remove(trade);
 
-                if (ModelState.IsValid)
-                {
-                    _context.Remove(trade);
+                await _context.SaveChangesAsync();
 
-                    await _context.SaveChangesAsync();
-
-                    return RedirectToAction(nameof(Index));
-                }
+                return RedirectToAction(nameof(Index));
             }
             catch (DbUpdateException)
             {
@@ -172,8 +154,9 @@ namespace Trading.Controllers
                     "Try again, and if the problem persists " +
                     "see your system administrator.");
             }
-
             return View(trade);
         }
+
+        
     }
 }

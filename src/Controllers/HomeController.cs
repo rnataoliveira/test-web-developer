@@ -18,12 +18,12 @@ namespace Trading.Controllers
         {
             var readmeUri = "https://raw.githubusercontent.com/rnataoliveira/test-web-developer/master/README.md";
 
-            //make a request using Httpcliente, convert a markdown into a html
+            //faz uma request usando Httpcliente, converte um arquivo markdown em um html
             var client = new HttpClient();
             var content = await client.GetStringAsync(new Uri(readmeUri));
             var result = CommonMark.CommonMarkConverter.Convert(content);
            
-            //return the request conten for the view
+            //retorna o conteúdo do request para a view
             return View(new HtmlString(result));
         }
     }

@@ -17,15 +17,19 @@ namespace Trading.Controllers
         {
             _context = context;
         }
-
+        //Lista todas as negociações
         [Route("trades", Name = "TradeList")]
         public async Task<IActionResult> Index()
         {
-            //ViewData["Message"] = "Lista de Operações";
-
             return View(await _context.Trades.ToListAsync());
         }
 
+        /*
+         * Recebe o id como parâmetro;
+         * Pega a primeira negociação referente a esse id;
+         * Retorna a view com a negociação preenchida;
+         * 
+         */
         [HttpGet]
         [Route("trades/{id}/update", Name = "UpdateForm")]
         public async Task<IActionResult> Update(int id)
@@ -37,7 +41,7 @@ namespace Trading.Controllers
             return View(trade);
         }
 
-
+        //Confirma a alteração, (salva o update);
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Route("trades/{id}/update", Name = "UpdateTrade")]
@@ -68,6 +72,7 @@ namespace Trading.Controllers
             return View(trade);
         }
 
+        //A action retorna a view pronta para que o usuário preencha os dados
         [HttpGet]
         [Route("trades/create", Name = "CreateForm")]
         public async Task<IActionResult> Create()
@@ -75,6 +80,12 @@ namespace Trading.Controllers
             return View();
         }
 
+        /*
+         * Recebe os campos preenchidos;
+        (Verifica se o código digitado já existe,
+        cria a negociação(adiciona no banco de dados),
+        e redireciona para a lista de negociações);
+        */
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Route("trades/create", Name = "CreateTrade")]
@@ -105,7 +116,7 @@ namespace Trading.Controllers
             return View(trade);
         }
         
-
+        //Mostra os detalhes de uma negociação
         [HttpGet]
         [Route("trades/{id}/display", Name = "DisplayTrade")]
         public async Task<IActionResult> Display(int id)
@@ -117,7 +128,7 @@ namespace Trading.Controllers
             return View(trade);
         }
         
-
+        //Verifica se já existe uma negociação com o código desejado.
         [Route("trades/verify-code")]
         [AcceptVerbs("Get", "Post")]
         public IActionResult VerifyCode(string code, int id)
@@ -130,7 +141,7 @@ namespace Trading.Controllers
         bool Exists(string code, int id) => 
             _context.Trades.Any(t => t.Code == code && t.Id != id);
 
-
+        //Remove a negociação e redireciona para a view de listagem de negociações
         [HttpPost]
         [Route("trades/{id}/remove", Name = "RemoveForm")]
         public async Task<IActionResult> Remove(int id)

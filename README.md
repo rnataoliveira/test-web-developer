@@ -17,5 +17,6 @@ Se você não conseguir realizar 100%, nos envie mesmo assim.
 Quem sabe não enxergamos uma oportunidade
 em meio ao seu código.
 
-Obs.: Utilizei bootstrap, javascript para validações no cliente, C#, Aap Net Core por estar mais familiarizada e estar vendo isso na faculdade. Adicionei as funcionalidades de criar e listar a negociação e também adicionei as funcionalidade de excluir e alterar uma negociação.  
+## Review
+ Utilizei bootstrap, javascript para validações no cliente, C#, Aap Net Core por estar mais familiarizada e estar vendo isso na faculdade. Adicionei as funcionalidades de criar e listar a negociação e também adicionei as funcionalidade de excluir e alterar uma negociação.  
 Além disso, realizei uma request do tipo get usando HttpClient para pegar o conteúdo do README.md e utilizei a lib CommonMark para converter markdown em html e HtmlString para retornar uma string com o conteúdo.

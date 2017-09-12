@@ -142,6 +142,7 @@ namespace Trading.Controllers
             _context.Trades.Any(t => t.Code == code && t.Id != id);
 
         //Remove a negociação e redireciona para a view de listagem de negociações
+        //O remover é ativado pelo evento de clique no botão "excluir" (Javascript code)
         [HttpPost]
         [Route("trades/{id}/remove", Name = "RemoveForm")]
         public async Task<IActionResult> Remove(int id)
